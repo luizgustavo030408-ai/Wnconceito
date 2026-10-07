@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WN Conceito</title>
+<meta name="description" content="WN Conceito — moda masculina em Boa Vista, RR. Avenida dos Bandeirantes, 2017, Buritis. Seg a sáb, 9h às 19h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: dark harbour-night shell; type-led hero with a 3D gold anchor, pinned horizontal tour of the store, a card-deck of reels, a chart-style "como chegar". */
+:root{
+  --bg:#0c0d11;          /* fachada: preto azulado */
+  --surface:#14161c;
+  --surface-2:#1b1e26;
+  --line:rgba(214,178,116,.16);
+  --line-2:rgba(237,231,220,.08);
+  --fg:#efe9df;
+  --muted:#9d978c;
+  --gold:#cfa865;
+  --gold-hi:#f1dcae;
+  --gold-lo:#8d6c3b;
+  --wa:#3ecf72;
+  --gold-grad:linear-gradient(100deg,#8d6c3b 0%,#e9d09c 30%,#b8904f 52%,#f4e2b6 70%,#9b7942 100%);
+  --f-display:"Cormorant Garamond","Cormorant",Garamond,"Times New Roman",serif;
+  --f-body:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gutter:max(16px,4.5vw);
+  --max:1280px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{overflow-x:clip}
+a{color:inherit;text-decoration:none}
+img,video{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+::selection{background:var(--gold);color:var(--bg)}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.label{font:500 11px/1.2 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.label.dim{color:var(--muted)}
+.gold-text{background:var(--gold-grad);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+h1,h2,h3{font-family:var(--f-display);font-weight:500;line-height:1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(40px,5.4vw,76px)}
+h2 em,h1 em{font-style:italic;font-weight:500}
+p{margin:0}
+.lede{color:var(--muted);font-size:clamp(16px,1.25vw,18px);max-width:52ch}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding-inline:22px;border-radius:999px;font:600 14px/1 var(--f-body);letter-spacing:.02em;border:1px solid transparent;transition:transform .35s var(--ease),background .3s,color .3s,border-color .3s;white-space:nowrap;cursor:pointer}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-gold{background:var(--gold-grad);background-size:180% 100%;background-position:0 0;color:#16120a;box-shadow:0 10px 30px -12px rgba(207,168,101,.55)}
+.btn-gold:hover{background-position:100% 0;transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line);color:var(--fg);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-hi);transform:translateY(-2px)}
+
+/* ---------- header ---------- */
+.hdr{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent}
+.hdr.scrolled{background:rgba(12,13,17,.78);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border-color:var(--line-2)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:44px;width:auto}
+.nav{display:flex;gap:34px}
+.nav a{font:500 12px/1 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);position:relative;padding-block:8px;transition:color .25s}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.nav a:hover{color:var(--fg)}
+.nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.hdr .btn{height:42px;padding-inline:18px;font-size:13px}
+@media (max-width:860px){.nav{display:none}.hdr .btn span{display:none}.hdr .btn{width:42px;padding:0;justify-content:center}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding-block:clamp(120px,15vh,170px) clamp(56px,8vh,96px)}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 55% at 78% 42%,rgba(207,168,101,.16),transparent 70%),
+  radial-gradient(40% 40% at 10% 100%,rgba(207,168,101,.06),transparent 70%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:28px;min-width:0}
+.hero h1{font-size:clamp(52px,8vw,124px);line-height:.92}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln>span{display:inline-block}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.status-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;padding-top:6px;border-top:1px solid var(--line-2);padding-block-start:22px}
+.chip{display:inline-flex;align-items:center;gap:9px;font:500 12px/1 var(--f-mono);letter-spacing:.08em;padding:9px 13px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted);position:relative}
+.chip.open .dot{background:var(--wa)}
+.chip.open .dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--wa);animation:ping 2s var(--ease) infinite}
+@keyframes ping{from{transform:scale(.6);opacity:1}to{transform:scale(1.8);opacity:0}}
+.status-row .meta{font:400 12px/1.4 var(--f-mono);letter-spacing:.06em;color:var(--muted)}
+
+.anchor-stage{position:relative;aspect-ratio:4/5;width:100%;max-width:520px;justify-self:center}
+.anchor-stage canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
+.anchor-stage .fallback{position:absolute;inset:12% 6%;object-fit:contain;opacity:.95}
+.anchor-stage.gl .fallback{display:none}
+.ring-label{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);white-space:nowrap;color:var(--muted)}
+.ring{position:absolute;left:6%;right:6%;top:50%;aspect-ratio:1/1;transform:translateY(-50%);border:1px solid var(--line);border-radius:50%;pointer-events:none}
+.ring.r2{left:19%;right:19%;border-style:dashed;border-color:var(--line-2)}
+.tick{position:absolute;font:500 10px/1 var(--f-mono);letter-spacing:.2em;color:var(--gold-lo)}
+.tick.n{top:3%;left:50%;transform:translateX(-50%)}
+.tick.l{right:2%;top:50%;transform:translateY(-50%)}
+.tick.o{left:2%;top:50%;transform:translateY(-50%)}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .anchor-stage{order:-1;max-width:300px;aspect-ratio:1/1;margin-bottom:-8px}
+  .anchor-stage .ring-label{display:none}
+}
+
+/* ---------- marquee ---------- */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding-block:22px;background:var(--surface)}
+.marquee-track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-group{display:flex;align-items:center;gap:38px;padding-right:38px}
+.marquee-group span{font:italic 500 clamp(26px,3vw,40px)/1 var(--f-display);color:var(--fg);white-space:nowrap}
+.marquee-group svg{width:18px;height:18px;color:var(--gold);flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- section scaffolding ---------- */
+section{position:relative}
+.sec{padding-block:clamp(84px,12vw,150px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:24px 48px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.sec-head .stack{display:flex;flex-direction:column;gap:18px;min-width:0}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr}}
+
+/* ---------- a loja: fachada ---------- */
+.facade{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.facade-img{position:relative;border-radius:2px;overflow:hidden;aspect-ratio:4/4.4;max-width:100%}
+.facade-img img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;object-position:50% 40%}
+.facade-img::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--line);pointer-events:none}
+.facade-tag{position:absolute;left:16px;bottom:16px;background:rgba(12,13,17,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:12px 14px;border:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.facade-tag b{font:500 13px/1.2 var(--f-body);color:var(--fg)}
+.facade-copy{display:flex;flex-direction:column;gap:26px;min-width:0}
+.perks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.perk{padding:22px 18px 4px 0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.perk+.perk{padding-left:18px;border-left:1px solid var(--line-2)}
+.perk h3{font-size:24px;line-height:1.1}
+.perk p{color:var(--muted);font-size:14px;line-height:1.55}
+@media (max-width:900px){.facade{grid-template-columns:1fr}.facade-img{aspect-ratio:4/4.2}}
+@media (max-width:600px){.perks{grid-template-columns:1fr}.perk,.perk+.perk{padding:18px 0;border-left:0;border-bottom:1px solid var(--line-2)}}
+
+/* ---------- tour (horizontal) ---------- */
+.tour{padding-block:clamp(40px,6vw,80px) clamp(84px,10vw,130px)}
+.tour-viewport{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-inline:var(--gutter)}
+.tour-viewport::-webkit-scrollbar{display:none}
+.tour-track{display:flex;gap:clamp(14px,1.8vw,26px);width:max-content;padding-right:var(--gutter)}
+.shot{position:relative;flex:none;width:clamp(240px,26vw,380px);scroll-snap-align:start;margin:0}
+.shot .ph{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--surface);max-width:100%}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter .6s}
+.shot:hover img{transform:scale(1.05)}
+.shot:nth-child(even){margin-top:clamp(28px,5vw,72px)}
+.shot figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-top:14px}
+.shot figcaption b{font:500 24px/1.1 var(--f-display)}
+.shot figcaption span{font:400 13px/1.4 var(--f-body);color:var(--muted);text-align:right}
+.tour-hint{display:flex;align-items:center;gap:14px;margin-top:28px}
+.tour-hint .bar{flex:1;height:1px;background:var(--line-2);position:relative;overflow:hidden}
+.tour-hint .bar i{position:absolute;inset:0;background:var(--gold);transform-origin:left;transform:scaleX(.12)}
+.tour.pinned .tour-viewport{overflow:visible;scroll-snap-type:none}
+
+/* ---------- vídeos (card deck) ---------- */
+.reels{background:linear-gradient(180deg,var(--bg),var(--surface) 30%,var(--surface) 70%,var(--bg))}
+.reels-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,90px);align-items:center}
+.reels-copy{display:flex;flex-direction:column;gap:26px;min-width:0}
+.reel-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.reel-list button{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;padding:18px 4px;background:none;border:0;border-bottom:1px solid var(--line-2);cursor:pointer;text-align:left;transition:padding .35s var(--ease)}
+.reel-list .n{font:500 11px/1 var(--f-mono);letter-spacing:.16em;color:var(--muted)}
+.reel-list .t{display:flex;flex-direction:column;gap:3px;min-width:0}
+.reel-list .t b{font:500 22px/1.1 var(--f-display)}
+.reel-list .t small{font-size:13px;color:var(--muted)}
+.reel-list .d{font:400 12px/1 var(--f-mono);color:var(--muted)}
+.reel-list button:hover{padding-left:12px}
+.reel-list button[aria-current="true"] .n,.reel-list button[aria-current="true"] b{color:var(--gold-hi)}
+.reel-list button[aria-current="true"]{padding-left:12px;box-shadow:inset 2px 0 0 var(--gold)}
+
+.cd-root{position:relative;display:flex;flex-direction:column;align-items:center;gap:30px;outline:none;padding-top:56px}
+.cd-root:focus-visible{outline:1px solid var(--line);outline-offset:8px;border-radius:12px}
+.cd-deck{position:relative;width:min(72vw,330px);aspect-ratio:9/16;max-width:100%;touch-action:pan-y}
+.cd-card{position:absolute;inset:0;border-radius:18px;overflow:hidden;background:var(--surface-2);box-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 40px 70px -30px rgba(0,0,0,.85),0 0 0 1px var(--line);transition:transform .6s var(--ease),opacity .4s ease,filter .4s ease;will-change:transform;user-select:none;-webkit-user-select:none}
+.cd-card[data-top="1"]{cursor:grab}
+.cd-card[data-mode="drag"]{cursor:grabbing;transition:none}
+.cd-card[data-mode="fly"]{transition:transform .45s cubic-bezier(.3,.5,.3,1),opacity .45s ease}
+.cd-card[data-mode="snap"]{transition:none}
+.cd-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cd-card .shade{position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(transparent,rgba(0,0,0,.55));pointer-events:none}
+.cd-card .prog{position:absolute;left:14px;right:14px;bottom:14px;height:2px;background:rgba(255,255,255,.18);border-radius:2px;overflow:hidden}
+.cd-card .prog i{position:absolute;inset:0;background:var(--gold-hi);transform-origin:left;transform:scaleX(0)}
+.cd-card .paused{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .3s;pointer-events:none}
+.cd-card .paused span{width:64px;height:64px;border-radius:50%;background:rgba(12,13,17,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:center;border:1px solid var(--line)}
+.cd-card[data-paused="1"] .paused{opacity:1}
+.cd-meta{display:flex;align-items:center;gap:16px;width:min(100%,420px)}
+.cd-cap{flex:1;min-width:0;overflow:hidden;padding-bottom:.15em}
+.cd-cap>*{display:block;animation:cdin .6s var(--ease) both}
+.cd-title{font:500 22px/1.15 var(--f-display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cd-sub{margin-top:3px;font-size:13px;color:var(--muted);animation-delay:.05s}
+.cd-count{font:500 12px/1 var(--f-mono);letter-spacing:.14em;color:var(--muted);font-variant-numeric:tabular-nums}
+.cd-count b{color:var(--fg);font-weight:500}
+.cd-btn{appearance:none;border:1px solid var(--line);background:transparent;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;cursor:pointer;flex:none;transition:background .25s,color .25s,border-color .25s}
+.cd-btn:hover{background:var(--gold);color:#16120a;border-color:var(--gold)}
+.sound{position:absolute;top:0;right:max(0px,calc(50% - 165px - 10px));display:inline-flex;align-items:center;gap:8px;height:36px;padding-inline:14px;border-radius:999px;border:1px solid var(--line);background:rgba(12,13,17,.6);font:500 11px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:border-color .25s,color .25s}
+.sound:hover,.sound[aria-pressed="true"]{border-color:var(--gold);color:var(--gold-hi)}
+.sound svg{width:16px;height:16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@keyframes cdin{from{transform:translateY(100%);opacity:0}to{transform:none;opacity:1}}
+@media (max-width:900px){.reels-grid{grid-template-columns:1fr}.sound{right:0}}
+
+/* ---------- visite ---------- */
+.visit-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,2vw,24px)}
+.card{background:var(--surface);border:1px solid var(--line);padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:28px;min-width:0}
+.info-row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding-block:18px;border-top:1px solid var(--line-2)}
+.info-row:first-of-type{border-top:0;padding-top:0}
+.info-row .v{font-size:17px;line-height:1.5;min-width:0}
+.info-row .v small{display:block;color:var(--muted);font-size:13px}
+.hours{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.hours td{padding:5px 0;font-size:15px;color:var(--muted)}
+.hours td:last-child{text-align:right;font-family:var(--f-mono);font-size:13px}
+.hours tr.today td{color:var(--gold-hi)}
+.phone{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px}
+.phone .num{font:500 clamp(24px,2.6vw,30px)/1 var(--f-display);letter-spacing:.01em;user-select:all}
+.copy{display:inline-flex;align-items:center;gap:6px;height:30px;padding-inline:12px;border-radius:999px;border:1px solid var(--line);background:none;font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s,border-color .2s}
+.copy:hover{color:var(--gold-hi);border-color:var(--gold)}
+.card-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto}
+.chart{position:relative;padding:0;overflow:hidden;min-height:440px;display:block;isolation:isolate}
+.chart canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.chart .pin{position:absolute;left:54%;top:52%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:8px}
+.chart .pin .badge{background:var(--gold-grad);color:#16120a;font:700 12px/1 var(--f-body);letter-spacing:.06em;padding:9px 12px;border-radius:2px;white-space:nowrap;box-shadow:0 12px 30px -10px rgba(0,0,0,.7)}
+.chart .pin .stem{width:1px;height:26px;background:var(--gold)}
+.chart .pin .base{width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 6px rgba(207,168,101,.18),0 0 0 14px rgba(207,168,101,.07)}
+.chart .top{position:absolute;top:22px;left:22px;right:22px;display:flex;justify-content:space-between;gap:12px}
+.chart .foot{position:absolute;left:22px;right:22px;bottom:22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.chart .open-map{display:inline-flex;align-items:center;gap:10px;font:600 14px/1 var(--f-body);color:var(--fg);background:rgba(12,13,17,.85);border:1px solid var(--line);padding:14px 16px;border-radius:999px;transition:border-color .25s,color .25s}
+.chart:hover .open-map{border-color:var(--gold);color:var(--gold-hi)}
+.chart .open-map svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.chart:hover .open-map svg{transform:translate(3px,-3px)}
+@media (max-width:900px){.visit-grid{grid-template-columns:1fr}.chart{min-height:340px}.info-row{grid-template-columns:1fr;gap:6px}}
+
+/* ---------- closing + footer ---------- */
+.closing{text-align:left;padding-block:clamp(84px,11vw,140px);border-top:1px solid var(--line-2)}
+.closing-in{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px}
+.closing h2{font-size:clamp(48px,8vw,120px);line-height:.92}
+footer{border-top:1px solid var(--line);padding-block:48px calc(48px + env(safe-area-inset-bottom,0px))}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.2fr) repeat(3,minmax(0,1fr));gap:32px}
+.foot-grid img{height:64px;width:auto}
+.foot-grid h4{margin:0 0 12px;font:500 11px/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.foot-grid p,.foot-grid a{font-size:14px;color:var(--muted);line-height:1.8}
+.foot-grid a:hover{color:var(--fg)}
+.foot-links{display:flex;flex-direction:column}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:44px;padding-top:22px;border-top:1px solid var(--line-2);font:400 12px/1.5 var(--f-mono);letter-spacing:.04em;color:var(--muted)}
+.legal a{color:var(--gold)}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}.foot-grid>div:first-child{grid-column:1/-1}}
+
+/* ---------- mobile action bar ---------- */
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(12,13,17,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s var(--ease)}
+.mbar.show{transform:none}
+.mbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:12px;font:600 13px/1 var(--f-body);border:1px solid var(--line)}
+.mbar a.wa{flex:1.6;background:var(--gold-grad);color:#16120a;border:0}
+.mbar svg{width:18px;height:18px}
+@media (max-width:760px){.mbar{display:flex}footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}}
+
+.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--fg);color:var(--bg);font:600 13px/1 var(--f-body);padding:12px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s var(--ease);z-index:70}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .marquee-track{animation:none}
+  .chip.open .dot::after{animation:none}
+  .cd-card,.cd-card[data-mode="fly"]{transition:opacity .3s ease}
+  .cd-cap>*{animation:none}
+}
+</style>
+
+</head>
+<body>
+<!-- SVG sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91A9.85 9.85 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.22 8.22 0 0 1 8.23 8.24c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="i-anchor" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="4.5" r="2"/><path d="M12 6.5V21M7.5 10h9M4 14c0 4 3.5 7 8 7s8-3 8-7M4 14l-1.5 1.8M4 14l2 1M20 14l1.5 1.8M20 14l-2 1"/></g></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></g></symbol>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#top" aria-label="WN Conceito, início"><img src="assets/logo.png" alt="WN Conceito Moda Masculina"></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#loja">A loja</a>
+      <a href="#videos">Vídeos</a>
+      <a href="#visite">Como chegar</a>
+    </nav>
+    <a class="btn btn-gold js-wa" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="label h-in">Moda masculina · Boa Vista, RR</p>
+        <h1>
+          <span class="ln"><span>Estilo que</span></span>
+          <span class="ln"><span>ancora a sua</span></span>
+          <span class="ln"><span><em class="gold-text">presença.</em></span></span>
+        </h1>
+        <p class="lede h-in">Camisetas, polos, camisas, jeans, bermudas, tênis e bonés numa loja ampla no Buritis. Venha provar com calma ou fale com a gente pelo WhatsApp.</p>
+        <div class="hero-ctas h-in">
+          <a class="btn btn-gold js-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Falar no WhatsApp</a>
+          <a class="btn btn-ghost js-map" href="#" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Como chegar</a>
+        </div>
+        <div class="status-row h-in">
+          <span class="chip" id="status"><span class="dot"></span><span id="status-txt">Seg a sáb · 9h às 19h</span></span>
+          <span class="meta">Av. dos Bandeirantes, 2017 · Buritis</span>
+        </div>
+      </div>
+
+      <div class="anchor-stage" id="anchorStage" aria-hidden="true">
+        <span class="ring"></span><span class="ring r2"></span>
+        <span class="tick n">N</span><span class="tick l">L</span><span class="tick o">O</span>
+        <img class="fallback" src="assets/logo.png" alt="">
+        <span class="label dim ring-label">02°49′N · 60°40′O · Boa Vista</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-label="O que você encontra na loja">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span>Camisetas</span><svg><use href="#i-anchor"/></svg><span>Polos</span><svg><use href="#i-anchor"/></svg><span>Camisas</span><svg><use href="#i-anchor"/></svg><span>Jeans</span><svg><use href="#i-anchor"/></svg><span>Bermudas</span><svg><use href="#i-anchor"/></svg><span>Tênis</span><svg><use href="#i-anchor"/></svg><span>Bonés</span><svg><use href="#i-anchor"/></svg>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <span>Camisetas</span><svg><use href="#i-anchor"/></svg><span>Polos</span><svg><use href="#i-anchor"/></svg><span>Camisas</span><svg><use href="#i-anchor"/></svg><span>Jeans</span><svg><use href="#i-anchor"/></svg><span>Bermudas</span><svg><use href="#i-anchor"/></svg><span>Tênis</span><svg><use href="#i-anchor"/></svg><span>Bonés</span><svg><use href="#i-anchor"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- A LOJA -->
+  <section class="sec" id="loja">
+    <div class="wrap facade">
+      <div class="facade-img rv">
+        <img src="assets/fachada.jpg" alt="Fachada da WN Conceito, preta com letreiro dourado iluminado, vitrines com manequins" id="facadeImg">
+        <div class="facade-tag"><span class="label">Endereço</span><b>Av. dos Bandeirantes, 2017 · Buritis</b></div>
+      </div>
+      <div class="facade-copy">
+        <p class="label rv">A loja</p>
+        <h2 class="rv">Uma loja ampla, feita para escolher <em class="gold-text">sem pressa.</em></h2>
+        <p class="lede rv">Da vitrine iluminada à parede de tênis, cada canto da WN foi pensado para você ver as peças de perto, provar e sair com o look fechado. E se vier acompanhado, tem onde esperar.</p>
+        <div class="perks rv">
+          <div class="perk"><h3>Sinuca e lounge</h3><p>Mesa de sinuca e sala de espera com sofá enquanto você escolhe.</p></div>
+          <div class="perk"><h3>Provadores</h3><p>Prove tudo na loja antes de levar.</p></div>
+          <div class="perk"><h3>Pelo WhatsApp</h3><p>Peça fotos, tamanhos e disponibilidade sem sair de casa.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOUR -->
+  <section class="tour" id="tour" aria-label="Por dentro da loja">
+    <div class="wrap sec-head">
+      <div class="stack">
+        <p class="label rv">Por dentro</p>
+        <h2 class="rv">Um passeio pelos <em>corredores.</em></h2>
+      </div>
+      <p class="lede rv">Imagens reais da loja. Arraste para o lado ou continue rolando a página.</p>
+    </div>
+    <div class="tour-viewport" id="tourViewport">
+      <div class="tour-track" id="tourTrack">
+        <figure class="shot"><div class="ph"><img src="assets/vitrine.jpg" alt="Vitrine com manequim e painel de madeira" loading="lazy"></div><figcaption><b>Vitrine</b><span>As novidades da semana</span></figcaption></figure>
+        <figure class="shot"><div class="ph"><img src="assets/araras2.jpg" alt="Araras com camisetas coloridas e manequim" loading="lazy"></div><figcaption><b>Camisetas e polos</b><span>Grade completa de cores</span></figcaption></figure>
+        <figure class="shot"><div class="ph"><img src="assets/parede.jpg" alt="Parede iluminada com tênis expostos" loading="lazy"></div><figcaption><b>Parede de tênis</b><span>Do casual ao esportivo</span></figcaption></figure>
+        <figure class="shot"><div class="ph"><img src="assets/provadores.jpg" alt="Arara com bermudas, jeans e camisas" loading="lazy"></div><figcaption><b>Bermudas e jeans</b><span>Para o calor de Boa Vista</span></figcaption></figure>
+        <figure class="shot"><div class="ph"><img src="assets/cabine.jpg" alt="Tênis brancos em prateleiras de madeira" loading="lazy"></div><figcaption><b>Detalhes</b><span>Peças expostas uma a uma</span></figcaption></figure>
+        <figure class="shot"><div class="ph"><img src="assets/sinuca.jpg" alt="Mesa de sinuca verde dentro da loja" loading="lazy"></div><figcaption><b>Sinuca</b><span>Uma partida enquanto escolhe</span></figcaption></figure>
+        <figure class="shot"><div class="ph"><img src="assets/lounge.jpg" alt="Sala de espera com sofá, tapete azul e quadros" loading="lazy"></div><figcaption><b>Lounge</b><span>Para quem veio acompanhar</span></figcaption></figure>
+        <figure class="shot"><div class="ph"><img src="assets/tenis2.jpg" alt="Vista do salão da loja com araras e iluminação" loading="lazy"></div><figcaption><b>O salão</b><span>Espaço para circular</span></figcaption></figure>
+      </div>
+    </div>
+    <div class="wrap tour-hint" aria-hidden="true"><span class="label dim">Arraste</span><span class="bar"><i id="tourBar"></i></span><span class="label dim">08 fotos</span></div>
+  </section>
+
+  <!-- VÍDEOS -->
+  <section class="sec reels" id="videos">
+    <div class="wrap reels-grid">
+      <div class="reels-copy">
+        <p class="label rv">Vídeos</p>
+        <h2 class="rv">A WN em <em class="gold-text">movimento.</em></h2>
+        <p class="lede rv">Os reels mais vistos do nosso Instagram. Arraste o vídeo da frente para o lado ou escolha na lista.</p>
+        <ul class="reel-list rv" id="reelList"></ul>
+        <div class="rv"><a class="btn btn-ghost js-ig" href="#" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>Seguir @wnconceito_bvrr</a></div>
+      </div>
+
+      <div class="cd-root" id="deck" role="region" aria-roledescription="carrossel" aria-label="Vídeos da loja" tabindex="0">
+        <button type="button" class="sound" id="soundBtn" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path id="soundIcon" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M4 9.5h3.5L12 5.5v13l-4.5-4H4zM16 9.5l5 5M21 9.5l-5 5"/></svg>
+          <span id="soundTxt">Ativar som</span>
+        </button>
+        <div class="cd-deck" id="deckCards"></div>
+        <div class="cd-meta">
+          <button type="button" class="cd-btn" id="prevBtn" aria-label="Vídeo anterior"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.4"/></svg></button>
+          <div class="cd-cap" id="deckCap" aria-hidden="true"></div>
+          <span class="cd-count" id="deckCount" aria-hidden="true"></span>
+          <button type="button" class="cd-btn" id="nextBtn" aria-label="Próximo vídeo"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.4"/></svg></button>
+        </div>
+        <div class="sr" aria-live="polite" id="deckLive"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISITE -->
+  <section class="sec" id="visite">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="stack">
+          <p class="label rv">Atendimento</p>
+          <h2 class="rv">Passe na loja ou <em>chame no WhatsApp.</em></h2>
+        </div>
+        <p class="lede rv">Atendemos de segunda a sábado, das 9h às 19h. Pelo WhatsApp você tira dúvidas de tamanho, pede fotos e reserva peças.</p>
+      </div>
+
+      <div class="visit-grid">
+        <div class="card rv">
+          <div class="info-row">
+            <span class="label dim">WhatsApp</span>
+            <div class="v">
+              <div class="phone"><span class="num" id="phoneNum">(95) 99138-6929</span><button type="button" class="copy" id="copyBtn"><svg width="14" height="14" aria-hidden="true"><use href="#i-copy"/></svg><span>Copiar</span></button></div>
+              <small>Vendas e atendimento</small>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="label dim">Endereço</span>
+            <div class="v">Avenida dos Bandeirantes, 2017<small>Buritis · Boa Vista, RR</small></div>
+          </div>
+          <div class="info-row">
+            <span class="label dim">Horário</span>
+            <div class="v">
+              <table class="hours" id="hours" aria-label="Horário de funcionamento">
+                <tbody>
+                  <tr data-d="1"><td>Segunda</td><td>9:00 – 19:00</td></tr>
+                  <tr data-d="2"><td>Terça</td><td>9:00 – 19:00</td></tr>
+                  <tr data-d="3"><td>Quarta</td><td>9:00 – 19:00</td></tr>
+                  <tr data-d="4"><td>Quinta</td><td>9:00 – 19:00</td></tr>
+                  <tr data-d="5"><td>Sexta</td><td>9:00 – 19:00</td></tr>
+                  <tr data-d="6"><td>Sábado</td><td>9:00 – 19:00</td></tr>
+                  <tr data-d="0"><td>Domingo</td><td>Fechado</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="label dim">Instagram</span>
+            <div class="v"><a class="js-ig" href="#" target="_blank" rel="noopener" style="color:var(--gold-hi)">@wnconceito_bvrr</a><small>12,7 mil seguidores</small></div>
+          </div>
+          <div class="card-ctas">
+            <a class="btn btn-gold js-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Chamar no WhatsApp</a>
+            <a class="btn btn-ghost js-ig" href="#" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>Instagram</a>
+          </div>
+        </div>
+
+        <a class="card chart rv js-map" href="#" target="_blank" rel="noopener" aria-label="Abrir rota no Google Maps para a WN Conceito">
+          <canvas id="chartCanvas" aria-hidden="true"></canvas>
+          <div class="top"><span class="label">Carta de chegada</span><span class="label dim">Boa Vista · RR</span></div>
+          <div class="pin" aria-hidden="true"><span class="badge">WN Conceito</span><span class="stem"></span><span class="base"></span></div>
+          <div class="foot"><span class="label dim">02°49′N · 60°40′O</span><span class="open-map">Abrir rota no Google Maps<svg><use href="#i-arrow"/></svg></span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="wrap closing-in">
+      <h2 class="rv">Te esperamos<br>na <em class="gold-text">WN.</em></h2>
+      <div class="hero-ctas rv">
+        <a class="btn btn-gold js-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Falar no WhatsApp</a>
+        <a class="btn btn-ghost js-map" href="#" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Ver no mapa</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><img src="assets/logo.png" alt="WN Conceito"></div>
+      <div><h4>Visite</h4><p>Av. dos Bandeirantes, 2017<br>Buritis · Boa Vista, RR</p></div>
+      <div><h4>Horário</h4><p>Segunda a sábado<br>9h às 19h</p></div>
+      <div class="foot-links"><h4>Contato</h4><a class="js-wa" href="#" target="_blank" rel="noopener">(95) 99138-6929</a><a class="js-ig" href="#" target="_blank" rel="noopener">@wnconceito_bvrr</a><a class="js-map" href="#" target="_blank" rel="noopener">Google Maps</a></div>
+    </div>
+    <div class="legal"><span>© <span id="yr">2026</span> WN Conceito · Moda Masculina</span><span>Site por <a href="https://www.instagram.com/vendora_labs/" target="_blank" rel="noopener">Vendora Labs</a></span></div>
+  </div>
+</footer>
+
+<nav class="mbar" id="mbar" aria-label="Ações rápidas">
+  <a class="wa js-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+  <a class="js-map" href="#" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Rota</a>
+  <a class="js-ig" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+</nav>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+"use strict";
+var PHONE="5595991386929";
+var WA="https://wa.me/"+PHONE+"?text="+encodeURIComponent("Olá! Vim pelo site da WN Conceito e gostaria de atendimento.");
+var IG="https://www.instagram.com/wnconceito_bvrr/";
+var MAP="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent("Avenida dos Bandeirantes, 2017 - Buritis, Boa Vista - RR");
+function each(sel,fn){Array.prototype.forEach.call(document.querySelectorAll(sel),fn)}
+each(".js-wa",function(a){a.href=WA});
+each(".js-ig",function(a){a.href=IG});
+each(".js-map",function(a){a.href=MAP});
+var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- toast + copy ---------- */
+var toast=document.getElementById("toast"),tt;
+function say(msg){toast.textContent=msg;toast.classList.add("show");clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove("show")},2200)}
+document.getElementById("copyBtn").addEventListener("click",function(){
+  var txt="(95) 99138-6929";
+  function fallback(){var r=document.createRange();r.selectNodeContents(document.getElementById("phoneNum"));var s=getSelection();s.removeAllRanges();s.addRange(r);say("Número selecionado")}
+  try{navigator.clipboard.writeText(txt).then(function(){say("Número copiado")},fallback)}catch(e){fallback()}
+});
+
+/* ---------- open / closed (horário de Boa Vista) ---------- */
+function bvNow(){
+  try{
+    var parts=new Intl.DateTimeFormat("en-US",{timeZone:"America/Boa_Vista",weekday:"short",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());
+    var o={};parts.forEach(function(p){o[p.type]=p.value});
+    var d={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday];
+    return {d:d,m:(parseInt(o.hour,10)%24)*60+parseInt(o.minute,10)};
+  }catch(e){var n=new Date();return {d:n.getDay(),m:n.getHours()*60+n.getMinutes()}}
+}
+function updateStatus(){
+  var t=bvNow(),chip=document.getElementById("status"),txt=document.getElementById("status-txt");
+  var workday=t.d>=1&&t.d<=6,open=workday&&t.m>=540&&t.m<1140,msg;
+  if(open){msg="Aberto agora · até 19h"}
+  else if(workday&&t.m<540){msg="Fechado · abre hoje às 9h"}
+  else if(t.d===6||t.d===0){msg="Fechado · abre segunda às 9h"}
+  else{msg="Fechado · abre amanhã às 9h"}
+  chip.classList.toggle("open",open);txt.textContent=msg;
+  each("#hours tr",function(tr){tr.classList.toggle("today",+tr.dataset.d===t.d)});
+}
+updateStatus();setInterval(updateStatus,60000);
+document.getElementById("yr").textContent=new Date().getFullYear();
+
+/* ---------- header + mobile bar ---------- */
+var hdr=document.getElementById("hdr"),mbar=document.getElementById("mbar");
+function onScroll(){var y=window.scrollY;hdr.classList.toggle("scrolled",y>30);mbar.classList.toggle("show",y>420)}
+window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+/* ================= CARD DECK (vídeos) ================= */
+var REELS=[
+  {src:"assets/v-conheca.mp4",poster:"assets/p-conheca.jpg",title:"Já conhece a WN?",cap:"Da fachada aos corredores em 30 segundos.",dur:"0:32"},
+  {src:"assets/v-tour.mp4",poster:"assets/p-tour.jpg",title:"Tour pela loja",cap:"Vitrine, araras, tênis, sinuca e lounge.",dur:"1:04"},
+  {src:"assets/v-janeiro.mp4",poster:"assets/p-janeiro.jpg",title:"Vendedor em janeiro",cap:"O lado bem-humorado da equipe.",dur:"0:40"}
+];
+var n=REELS.length,top=0,busy=false,over=null,sound=false,inView=false,userPaused=false;
+var deckEl=document.getElementById("deckCards"),root=document.getElementById("deck");
+var capEl=document.getElementById("deckCap"),countEl=document.getElementById("deckCount"),live=document.getElementById("deckLive");
+var listEl=document.getElementById("reelList");
+function wrap(i){return ((i%n)+n)%n}
+function pad2(x){return x<10?"0"+x:""+x}
+function tiltFor(i,max){var u=(((i+1)*2654435761)>>>0)/4294967296;return (u*2-1)*max}
+function pose(depth,tilt){var d=Math.min(depth,3);return {y:d?-d*18:0,scale:1-d*.06,rot:depth===0||reduce?0:tilt,opacity:depth>3?0:1,shade:1-d*.18}}
+
+var cards=REELS.map(function(r,i){
+  var c=document.createElement("div");c.className="cd-card";
+  c.innerHTML='<video muted playsinline preload="'+(i===0?"auto":"metadata")+'" poster="'+r.poster+'"><source src="'+r.src+'" type="video/mp4"></video><span class="shade"></span><span class="paused"><span><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></span><span class="prog"><i></i></span>';
+  var v=c.querySelector("video"),bar=c.querySelector(".prog i");
+  v.addEventListener("timeupdate",function(){if(v.duration)bar.style.transform="scaleX("+(v.currentTime/v.duration)+")"});
+  v.addEventListener("ended",function(){if(i===top)throwTop(1)});
+  deckEl.appendChild(c);
+  var li=document.createElement("li");
+  li.innerHTML='<button type="button"><span class="n">'+pad2(i+1)+'</span><span class="t"><b>'+r.title+'</b><small>'+r.cap+'</small></span><span class="d">'+r.dur+'</span></button>';
+  li.firstChild.addEventListener("click",function(){goTo(i)});
+  listEl.appendChild(li);
+  return c;
+});
+
+function layout(){
+  cards.forEach(function(c,i){
+    var depth=wrap(i-top),p=pose(depth,tiltFor(i,7)),o=over&&over.i===i?over:null;
+    c.dataset.top=depth===0?"1":"0";
+    c.dataset.mode=o?o.mode:"";
+    c.style.transform=o?"translate("+o.x+"px,"+o.y+"px) rotate("+o.r+"deg)":"translateY("+p.y+"px) scale("+p.scale+") rotate("+p.rot.toFixed(2)+"deg)";
+    c.style.zIndex=o?n+1:n-depth;
+    c.style.opacity=o?1:p.opacity;
+    c.style.filter=(o||depth===0)?"none":"brightness("+p.shade+")";
+    c.setAttribute("aria-hidden",depth===0?"false":"true");
+  });
+}
+function renderMeta(){
+  var r=REELS[top];
+  capEl.innerHTML='<span class="cd-title">'+r.title+'</span><span class="cd-sub">'+r.cap+'</span>';
+  countEl.innerHTML="<b>"+pad2(top+1)+"</b> / "+pad2(n);
+  live.textContent="Vídeo "+(top+1)+" de "+n+": "+r.title;
+  each("#reelList button",function(b,i){b.setAttribute("aria-current",i===top?"true":"false")});
+}
+function syncPlayback(){
+  cards.forEach(function(c,i){
+    var v=c.querySelector("video");
+    if(i===top){
+      v.muted=!sound;
+      if(inView&&!userPaused&&!document.hidden){var p=v.play();if(p&&p.catch)p.catch(function(){c.dataset.paused="1"});c.dataset.paused="0"}
+      else{v.pause();c.dataset.paused=userPaused?"1":"0"}
+    }else{v.pause();c.dataset.paused="0"}
+  });
+}
+function changed(){userPaused=false;renderMeta();syncPlayback()}
+function later(fn,ms){return setTimeout(fn,ms)}
+function throwTop(dir,fx,fy){
+  fx=fx||0;fy=fy||0;
+  if(busy||n<2)return;busy=true;
+  var w=deckEl.offsetWidth||330,sx=dir>=0?1:-1,i=top;
+  over={i:i,x:fx+sx*w*1.35,y:fy*.4-40,r:sx*16,mode:"fly"};layout();
+  later(function(){
+    var old=cards[i].querySelector("video");old.pause();
+    over=null;top=wrap(top+1);busy=false;layout();changed();
+  },reduce?200:430);
+}
+function pullBack(){
+  if(busy||n<2)return;busy=true;
+  var w=deckEl.offsetWidth||330,i=wrap(top-1);
+  over={i:i,x:-w*1.35,y:-40,r:-16,mode:"snap"};layout();
+  requestAnimationFrame(function(){requestAnimationFrame(function(){
+    over={i:i,x:0,y:0,r:0,mode:"fly"};layout();
+    later(function(){over=null;top=i;busy=false;layout();changed()},reduce?200:450);
+  })});
+}
+function goTo(i){if(i===top||busy)return;if(i===wrap(top+1)){throwTop(1);return}if(i===wrap(top-1)){pullBack();return}top=i;layout();changed()}
+
+/* drag */
+var drag=null;
+deckEl.addEventListener("pointerdown",function(e){
+  var c=e.target.closest(".cd-card");if(!c||c.dataset.top!=="1"||busy)return;
+  if(e.pointerType==="mouse"&&e.button!==0)return;
+  c.setPointerCapture(e.pointerId);
+  drag={c:c,x:e.clientX,y:e.clientY,lx:e.clientX,lt:e.timeStamp,vx:0,moved:false};
+});
+deckEl.addEventListener("pointermove",function(e){
+  if(!drag)return;
+  var dt=Math.max(1,e.timeStamp-drag.lt);
+  drag.vx=.8*((e.clientX-drag.lx)/dt)+.2*drag.vx;drag.lx=e.clientX;drag.lt=e.timeStamp;
+  var dx=e.clientX-drag.x,dy=e.clientY-drag.y;
+  if(Math.abs(dx)+Math.abs(dy)>6)drag.moved=true;
+  if(!drag.moved)return;
+  over={i:top,x:dx,y:dy,r:reduce?0:dx*.05,mode:"drag"};layout();
+});
+function endDrag(e){
+  if(!drag)return;var d=drag;drag=null;
+  var dx=e.clientX-d.x,dy=e.clientY-d.y,w=deckEl.offsetWidth||330;
+  if(!d.moved){ // tap = play/pause
+    var v=cards[top].querySelector("video");
+    if(v.paused){userPaused=false;inView=true;syncPlayback()}else{userPaused=true;v.pause();cards[top].dataset.paused="1"}
+    return;
+  }
+  if(Math.abs(dx)>w*.28||(Math.abs(d.vx)>.55&&Math.abs(dx)>24))throwTop(dx,dx,dy);
+  else{over=null;layout()}
+}
+deckEl.addEventListener("pointerup",endDrag);
+deckEl.addEventListener("pointercancel",endDrag);
+root.addEventListener("keydown",function(e){
+  if(e.key==="ArrowRight"){throwTop(1);e.preventDefault()}
+  else if(e.key==="ArrowLeft"){pullBack();e.preventDefault()}
+});
+document.getElementById("nextBtn").addEventListener("click",function(){throwTop(1)});
+document.getElementById("prevBtn").addEventListener("click",pullBack);
+
+var soundBtn=document.getElementById("soundBtn");
+soundBtn.addEventListener("click",function(){
+  sound=!sound;soundBtn.setAttribute("aria-pressed",sound?"true":"false");
+  document.getElementById("soundTxt").textContent=sound?"Som ligado":"Ativar som";
+  document.getElementById("soundIcon").setAttribute("d",sound?"M4 9.5h3.5L12 5.5v13l-4.5-4H4zM16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11":"M4 9.5h3.5L12 5.5v13l-4.5-4H4zM16 9.5l5 5M21 9.5l-5 5");
+  userPaused=false;syncPlayback();
+});
+if("IntersectionObserver" in window){
+  new IntersectionObserver(function(en){inView=en[0].isIntersecting;syncPlayback()},{threshold:.35}).observe(root);
+}else{inView=true}
+document.addEventListener("visibilitychange",syncPlayback);
+layout();renderMeta();
+
+/* ================= NAUTICAL CHART (como chegar) ================= */
+var chartCanvas=document.getElementById("chartCanvas");
+function drawChart(){
+  var box=chartCanvas.parentElement.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);
+  var W=box.width,H=box.height;chartCanvas.width=W*dpr;chartCanvas.height=H*dpr;
+  var g=chartCanvas.getContext("2d");g.setTransform(dpr,0,0,dpr,0,0);
+  var cs=getComputedStyle(document.documentElement);
+  var bg=cs.getPropertyValue("--surface").trim()||"#14161c",gold=cs.getPropertyValue("--gold").trim()||"#cfa865",muted=cs.getPropertyValue("--muted").trim()||"#9d978c";
+  g.fillStyle=bg;g.fillRect(0,0,W,H);
+  var cx=W*.54,cy=H*.52;
+  // grid
+  g.strokeStyle="rgba(237,231,220,.05)";g.lineWidth=1;
+  for(var x=(cx%40);x<W;x+=40){g.beginPath();g.moveTo(x+.5,0);g.lineTo(x+.5,H);g.stroke()}
+  for(var y=(cy%40);y<H;y+=40){g.beginPath();g.moveTo(0,y+.5);g.lineTo(W,y+.5);g.stroke()}
+  // blocks (quadras)
+  g.save();g.translate(cx,cy);g.rotate(-0.42);
+  g.fillStyle="rgba(237,231,220,.035)";
+  for(var bx=-6;bx<6;bx++)for(var by=-6;by<6;by++){if((bx*7+by*3)%5===0)continue;g.fillRect(bx*70+8,by*56+8,54,40)}
+  // main avenue
+  g.strokeStyle="rgba(207,168,101,.55)";g.lineWidth=3;g.beginPath();g.moveTo(-W,0);g.lineTo(W,0);g.stroke();
+  g.strokeStyle="rgba(237,231,220,.12)";g.lineWidth=1.2;
+  for(var k=-6;k<=6;k++){g.beginPath();g.moveTo(k*70,-H);g.lineTo(k*70,H);g.stroke()}
+  g.fillStyle=gold;g.font="500 10px 'IBM Plex Mono', monospace";g.textAlign="left";
+  g.fillText("AV. DOS BANDEIRANTES",-W*.42,-10);
+  g.restore();
+  // range rings
+  g.strokeStyle="rgba(207,168,101,.22)";g.setLineDash([3,5]);
+  [70,130,200].forEach(function(r){g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.stroke()});
+  g.setLineDash([]);
+  // compass rose
+  var rx=W-74,ry=H-120,R=38;
+  g.strokeStyle="rgba(207,168,101,.5)";g.lineWidth=1;g.beginPath();g.arc(rx,ry,R,0,Math.PI*2);g.stroke();
+  for(var a=0;a<32;a++){var an=a/32*Math.PI*2,l=a%8===0?10:a%4===0?6:3;g.beginPath();g.moveTo(rx+Math.cos(an)*R,ry+Math.sin(an)*R);g.lineTo(rx+Math.cos(an)*(R-l),ry+Math.sin(an)*(R-l));g.stroke()}
+  g.fillStyle=gold;g.beginPath();g.moveTo(rx,ry-R+4);g.lineTo(rx+6,ry);g.lineTo(rx,ry+R-4);g.lineTo(rx-6,ry);g.closePath();g.globalAlpha=.85;g.fill();g.globalAlpha=1;
+  g.fillStyle=muted;g.font="500 10px 'IBM Plex Mono', monospace";g.textAlign="center";g.fillText("N",rx,ry-R-8);
+}
+var chartRO=window.ResizeObserver?new ResizeObserver(drawChart):null;
+if(chartRO)chartRO.observe(chartCanvas.parentElement);else window.addEventListener("resize",drawChart);
+drawChart();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(drawChart);
+
+/* ================= THREE.JS — âncora dourada ================= */
+(function anchor3D(){
+  var stage=document.getElementById("anchorStage");
+  if(!window.THREE||!stage)return;
+  var renderer;
+  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:"high-performance"})}catch(e){return}
+  renderer.setPixelRatio(Math.min(2,window.devicePixelRatio||1));
+  renderer.outputEncoding=THREE.sRGBEncoding;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+  stage.appendChild(renderer.domElement);stage.classList.add("gl");
+  var scene=new THREE.Scene();
+  var cam=new THREE.PerspectiveCamera(32,1,.1,50);cam.position.set(0,0,9.2);
+
+  // studio env for the metal reflections
+  var pm=new THREE.PMREMGenerator(renderer);
+  var env=new THREE.Scene();
+  env.add(new THREE.Mesh(new THREE.SphereGeometry(20,32,16),new THREE.MeshBasicMaterial({color:0x0b0b0d,side:THREE.BackSide})));
+  function panel(w,h,x,y,z,c){var m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);env.add(m)}
+  panel(10,4,0,9,4,new THREE.Color(5,4.6,4));
+  panel(4,12,-10,0,3,new THREE.Color(3.2,2.6,1.8));
+  panel(3,10,10,1,-2,new THREE.Color(2.2,2.2,2.4));
+  panel(14,2,0,-8,6,new THREE.Color(.8,.65,.45));
+  scene.environment=pm.fromScene(env,.04).texture;
+
+  var mat=new THREE.MeshStandardMaterial({color:0xe2bd7a,metalness:1,roughness:.26});
+  var A=new THREE.Group();
+  function add(geo,x,y,z,rx,ry,rz){var m=new THREE.Mesh(geo,mat);m.position.set(x||0,y||0,z||0);m.rotation.set(rx||0,ry||0,rz||0);A.add(m);return m}
+  add(new THREE.TorusGeometry(.34,.075,24,64),0,1.72);                       // argola
+  add(new THREE.CylinderGeometry(.09,.1,2.75,40),0,.22);                    // haste
+  add(new THREE.CylinderGeometry(.075,.075,1.5,32),0,1.08,0,0,0,Math.PI/2); // cepo
+  add(new THREE.SphereGeometry(.11,24,16),-.75,1.08);add(new THREE.SphereGeometry(.11,24,16),.75,1.08);
+  add(new THREE.TorusGeometry(1.08,.09,24,120,Math.PI),0,-.1,0,0,0,Math.PI); // braços
+  add(new THREE.SphereGeometry(.15,24,16),0,-1.18);                          // coroa
+  [-1,1].forEach(function(s){                                                 // unhas
+    var f=add(new THREE.ConeGeometry(.2,.5,4),s*1.12,.12,0,0,Math.PI/4,-s*.5);
+    f.scale.set(1,1,.45);
+  });
+  A.rotation.z=.08;scene.add(A);
+
+  var key=new THREE.DirectionalLight(0xfff1d6,1.2);key.position.set(3,5,6);scene.add(key);
+  scene.add(new THREE.AmbientLight(0x2a2418,.6));
+
+  function size(){var r=stage.getBoundingClientRect();renderer.setSize(r.width,r.height,false);cam.aspect=r.width/Math.max(1,r.height);cam.updateProjectionMatrix()}
+  size();(window.ResizeObserver?new ResizeObserver(size).observe(stage):window.addEventListener("resize",size));
+
+  var mx=0,my=0,tx=0,ty=0,visible=true,t0=performance.now();
+  window.addEventListener("pointermove",function(e){tx=(e.clientX/innerWidth-.5);ty=(e.clientY/innerHeight-.5)},{passive:true});
+  if("IntersectionObserver" in window)new IntersectionObserver(function(en){visible=en[0].isIntersecting},{threshold:0}).observe(stage);
+  var intro=reduce?1:0;
+  function frame(now){
+    requestAnimationFrame(frame);
+    if(!visible||document.hidden)return;
+    var t=(now-t0)/1000;
+    if(intro<1)intro=Math.min(1,intro+.012);
+    var e=1-Math.pow(1-intro,3);
+    mx+=(tx-mx)*.05;my+=(ty-my)*.05;
+    A.rotation.y=reduce?.5:t*.35+mx*.8-(1-e)*2.2;
+    A.rotation.x=my*.35;
+    A.position.y=reduce?0:Math.sin(t*1.1)*.08;
+    A.scale.setScalar(.82+.18*e);
+    renderer.render(scene,cam);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ================= GSAP ================= */
+if(!window.gsap)return;
+gsap.registerPlugin(ScrollTrigger);
+var mm=gsap.matchMedia();
+
+mm.add("(prefers-reduced-motion: no-preference)",function(){
+  // intro
+  var tl=gsap.timeline({defaults:{ease:"power3.out"}});
+  tl.from(".hdr-in>*",{y:-14,autoAlpha:0,duration:.7,stagger:.08})
+    .from(".hero h1 .ln>span",{yPercent:110,duration:1.1,stagger:.1},"-=.45")
+    .from(".h-in",{y:18,autoAlpha:0,duration:.8,stagger:.08},"-=.75")
+    .from(".anchor-stage .ring",{autoAlpha:0,duration:1.4,stagger:.15},"-=1.1");
+  gsap.to(".gold-text",{backgroundPosition:"100% 0",duration:6,ease:"sine.inOut",repeat:-1,yoyo:true});
+
+  // reveals (batch keeps it cheap)
+  ScrollTrigger.batch(".rv",{start:"top 88%",once:true,
+    onEnter:function(b){gsap.fromTo(b,{y:34,autoAlpha:0},{y:0,autoAlpha:1,duration:.9,ease:"power3.out",stagger:.08,overwrite:true})}});
+
+  // fachada parallax
+  gsap.fromTo("#facadeImg",{yPercent:-5},{yPercent:5,ease:"none",scrollTrigger:{trigger:".facade-img",start:"top bottom",end:"bottom top",scrub:true}});
+});
+
+// pinned horizontal tour on larger screens
+mm.add("(min-width: 901px) and (prefers-reduced-motion: no-preference)",function(){
+  var tour=document.getElementById("tour"),track=document.getElementById("tourTrack"),vp=document.getElementById("tourViewport");
+  tour.classList.add("pinned");
+  function dist(){return Math.max(0,track.scrollWidth-vp.clientWidth+parseFloat(getComputedStyle(vp).paddingLeft))}
+  var tw=gsap.to(track,{x:function(){return -dist()},ease:"none",
+    scrollTrigger:{trigger:tour,start:"top top",end:function(){return "+="+dist()},pin:true,scrub:.6,invalidateOnRefresh:true,anticipatePin:1,
+      onUpdate:function(s){gsap.set("#tourBar",{scaleX:.12+.88*s.progress})}}});
+  gsap.utils.toArray(".shot img").forEach(function(img){
+    gsap.fromTo(img,{scale:1.18},{scale:1,ease:"none",scrollTrigger:{trigger:img.closest(".shot"),containerAnimation:tw,start:"left right",end:"right left",scrub:true}});
+  });
+  return function(){tour.classList.remove("pinned");gsap.set(track,{clearProps:"x"})};
+});
+
+// mobile: native scroll drives the progress bar
+mm.add("(max-width: 900px)",function(){
+  var vp=document.getElementById("tourViewport");
+  function upd(){var m=vp.scrollWidth-vp.clientWidth;gsap.set("#tourBar",{scaleX:.12+.88*(m>0?vp.scrollLeft/m:0)})}
+  vp.addEventListener("scroll",upd,{passive:true});upd();
+  return function(){vp.removeEventListener("scroll",upd)};
+});
+
+window.addEventListener("load",function(){ScrollTrigger.refresh()});
+})();
+</script>
+
+</body>
+</html>
